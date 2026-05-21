@@ -2,6 +2,17 @@
 
 set -e
 
+echo "===== DEBUG INFO ====="
+whoami
+pwd
+hostname
+which python
+which uvicorn
+env | grep RUNNER || true
+echo "======================"
+
+echo "Starting deployment..."
+
 echo "Starting deployment..."
 
 PROJECT_DIR="$HOME/devops-practice/learn-cicd"
