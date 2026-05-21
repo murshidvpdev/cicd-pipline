@@ -28,11 +28,16 @@ echo "Installing dependencies..."
 
 echo "Starting app..."
 
-nohup ./venv/bin/uvicorn app:app \
-  --host 0.0.0.0 \
-  --port 8000 \
-  > app.log 2>&1 &
-disown
+./venv/bin/python3 -c "
+import subprocess
+p = subprocess.Popen(
+    ['./venv/bin/uvicorn', 'app:app', '--host', '0.0.0.0', '--port', '8000'],
+    stdout=open('app.log', 'w'),
+    stderr=subprocess.STDOUT,
+    start_new_session=True
+)
+print('Started uvicorn with PID', p.pid)
+"
 
 echo "Waiting for app..."
 sleep 5
