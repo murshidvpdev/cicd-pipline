@@ -4,6 +4,11 @@ set -e
 
 echo "Starting deployment..."
 
+PROJECT_DIR="$HOME/devops-practice/learn-cicd"
+
+echo "Moving to project directory..."
+cd "$PROJECT_DIR"
+
 echo "Stopping old app..."
 pkill -f uvicorn || true
 
@@ -21,10 +26,10 @@ nohup uvicorn app:app \
   > app.log 2>&1 &
 
 echo "Waiting for app..."
-sleep 3
+sleep 5
 
-echo "Running health check..."
+echo "Health check..."
 curl http://localhost:8000/health
 
 echo ""
-echo "Deployment complete"
+echo "Deployment successful!"
