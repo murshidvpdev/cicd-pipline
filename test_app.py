@@ -9,7 +9,7 @@ def test_home():
 
     assert response.status_code == 200
     assert response.json() == {
-        "message": "version 3"
+        "message": "version 4"
     }
 
 
